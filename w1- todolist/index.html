@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-list</title>
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="container">
+        <h3 class='text-center mb-2'>Todo List</h3>
+        <div class="d-flex align-center position-relative">
+            <input type="text" class="newTodo" placeholder="準備要做什麼任務呢?" autofocus>
+            <a href="#" class="addTodo position-absolute"><i class="fas fa-plus"></i></a>
+        </div>
+        
+        <ul class="todoList">
+
+        </ul>
+
+
+        <div class="d-flex jc-between align-center">
+            <span>有 <span class="taskCount">0</span> 筆任務</span>
+            <button class="clearTask text-right">Delete all</button>
+            <!-- <a href="#" class="delAll text-right">Delete all</a> -->
+        </div>
+
+    </div>
+    <script src="js/all.js"></script>
+</body>
+</html>
