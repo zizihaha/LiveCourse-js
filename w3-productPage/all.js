@@ -48,11 +48,6 @@ new Vue({
         const id = this.tempProduct.id;
         this.products.forEach((item, i) => { 
           if (item.id === id) { //如果item.id 等於存在tempProduct的id 
-            console.log('第幾筆i資料一樣',i)
-            console.log('item.id',item.id)
-            console.log('id',id)
-            console.log('item',item)
-            console.log('this.products[i]',this.products[i])
             this.products[i] = this.tempProduct; 
           }
         });
