@@ -1,0 +1,18 @@
+.banner{
+    background-image: url(https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.path{
+    background-color: #E0E8EF;
+}
+
+.breadcrumb{
+    background-color: transparent;
+}
+
+h3{
+    font-size: 18px;
+}
