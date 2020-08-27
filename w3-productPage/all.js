@@ -1,9 +1,34 @@
-//價格部份增加$字號宇千分號
+
+//價格部份增加$字號、千分號
 Vue.filter('money', function(num){
   var parts = num.toString().split('.');
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
   return '$' + parts.join('.');
 });
+
+
+// 註冊全域的表單驗證元件（ValidationProvider、ValidationObserver）
+// 將 VeeValidate input 驗證工具載入 作為全域註冊
+Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
+
+// 將 VeeValidate 完整表單 驗證工具載入 作為全域註冊
+Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
+
+
+// Class 設定檔案
+VeeValidate.configure({
+  classes: {
+    valid: 'is-valid',
+    invalid: 'is-invalid',
+  }
+});
+
+// 匯入語系檔案
+import zh_TW from './zh_TW.js';
+
+// 加入至 VeeValidate 的設定檔案
+VeeValidate.localize('tw', zh_TW)
+
 
 new Vue({
   el: '#app',
@@ -67,7 +92,7 @@ new Vue({
         case 'new': //建立新的產品
           $('#productModal').modal('show'); //BS手動打開產品視窗
           editTitle.textContent = '新增產品';
-          this.tempProduct = {};
+          this.tempProduct = {}; //如果點了編輯產品後沒有送出，就不會清空tempProduct內容，所以這邊要寫清空，不然會留資料
           break;
         case 'edit': //編輯
           $('#productModal').modal('show'); 

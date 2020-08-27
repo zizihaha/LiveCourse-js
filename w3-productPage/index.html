@@ -7,6 +7,7 @@
     <title>index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="all.css">
   </head>
 
   <body>
@@ -68,7 +69,7 @@
           </tbody>
         </table>
         <!-- 新增產品 -->
-        <div id="productModal" class="modal fade" v-on:keyup.enter="updateProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div id="productModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content border-0">
@@ -80,79 +81,107 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label for="imageUrl">輸入圖片網址</label>
-                      <input id="imageUrl" v-model="tempProduct.imageUrl" type="text" class="form-control"
-                        placeholder="請輸入圖片連結">
+              <validation-observer v-slot="{ invalid }" immediate>
+                <form @submit.prevent="updateProduct">
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="imageUrl">輸入圖片網址<i class="asterisk text-danger ml-1">*</i></label>
+                        <input id="imageUrl" v-model="tempProduct.imageUrl" type="text" class="form-control"
+                          placeholder="請輸入圖片連結">
+                      </div>
+                      <img class="img-fluid" :src="tempProduct.imageUrl" alt>
                     </div>
-                    <img class="img-fluid" :src="tempProduct.imageUrl" alt>
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="form-group">
-                      <label for="title">標題</label>
-                      <input id="title" v-model="tempProduct.title" type="text" class="form-control" placeholder="請輸入標題">
-                    </div>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <label for="title">產品名稱<i class="asterisk text-danger ml-1">*</i></label>
+                        <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                          <input id="title" :class="classes" v-model="tempProduct.title" type="text" class="form-control" placeholder="請輸入產品名稱" name="產品名稱">
+                          <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </validation-provider>
+                      </div>
 
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="category">分類</label>
-                        <input id="category" v-model="tempProduct.category" type="text" class="form-control"
-                          placeholder="請輸入分類" >
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="category">分類<i class="asterisk text-danger ml-1">*</i></label>
+                          <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                            <input id="category" :class="classes" v-model="tempProduct.category" type="text" class="form-control"
+                            placeholder="請輸入分類" name="分類">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                          </validation-provider>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="price">單位</label>
+                          <input id="unit" v-model="tempProduct.unit" type="unit" class="form-control"
+                            placeholder="請輸入單位">
+                        </div>
                       </div>
-                      <div class="form-group col-md-6">
-                        <label for="price">單位</label>
-                        <input id="unit" v-model="tempProduct.unit" type="unit" class="form-control"
-                          placeholder="請輸入單位">
-                      </div>
-                    </div>
 
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="origin_price">原價</label>
-                        <input id="origin_price" v-model="tempProduct.origin_price" type="number" class="form-control"
-                          placeholder="請輸入原價">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="price">售價</label>
-                        <input id="price" v-model="tempProduct.price" type="number" class="form-control"
-                          placeholder="請輸入售價">
-                      </div>
-                    </div>
-                    <hr>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="origin_price">原價<i class="asterisk text-danger ml-1">*</i></label>
+                          <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                          <input id="origin_price" :class="classes" v-model="tempProduct.origin_price" type="number" class="form-control required"
+                            placeholder="請輸入原價" name="原價">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                          </validation-provider>
+                        </div>
 
-                    <div class="form-group">
-                      <label for="description">產品描述</label>
-                      <textarea id="description" v-model="tempProduct.description" type="text" class="form-control"
-                        placeholder="請輸入產品描述" >
-                      </textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="content">說明內容</label>
-                      <textarea id="description" v-model="tempProduct.content" type="text" class="form-control"
-                        placeholder="請輸入說明內容" >
-                      </textarea>
-                    </div>
-                    <div class="form-group">
-                      <div class="form-check">
-                        <input id="is_enabled" v-model="tempProduct.is_enabled" class="form-check-input" type="checkbox"
-                          :true-value="1" :false-value="0">
-                        <label class="form-check-label" for="is_enabled">是否上架</label>
+                        <div class="form-group col-md-6">
+                          <label for="price">售價<i class="asterisk text-danger ml-1">*</i></label>
+                          <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                            <input id="price" :class="classes" v-model="tempProduct.price" type="number" class="form-control" name="售價"
+                              placeholder="請輸入售價" name="售價">
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                          </validation-provider>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="form-group">
+                        <label for="description">產品描述<i class="asterisk text-danger ml-1">*</i></label>
+                        <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                          <textarea id="description" :class="classes" v-model="tempProduct.description" type="text" class="form-control"
+                            placeholder="請輸入產品描述" name="產品描述">
+                          </textarea>
+                          <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </validation-provider>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="content">說明內容<i class="asterisk text-danger ml-1">*</i></label>
+                        <validation-provider rules="required" v-slot="{ errors, classes, passed }">
+                          <textarea id="description" :class="classes" v-model="tempProduct.content" type="text" class="form-control"
+                            placeholder="請輸入說明內容" name="說明內容">
+                          </textarea>
+                        <span class="invalid-feedback">{{ errors[0] }}</span>
+                        </validation-provider>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input id="is_enabled" v-model="tempProduct.is_enabled" class="form-check-input" type="checkbox"
+                            :true-value="1" :false-value="0">
+                          <label class="form-check-label" for="is_enabled">是否上架</label>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              <div class="modal-footer d-flex justify-content-between">
+                  <span class="text-danger"><i class="asterisk mr-2">*</i>為必填欄位</span>
+                <div>
+                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+                    取消
+                  </button>
+                  <button type="submit" class="btn btn-primary" :disabled="invalid">
+                    確認
+                  </button>
+                  <!-- 加了:disabled="invalid" 表單驗證成功前會無法按 -->
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-                  取消
-                </button>
-                <button type="button" class="btn btn-primary"  @click="updateProduct">
-                  確認
-                </button>
-              </div>
+              </form>
+              </validation-observer>
             </div>
           </div>
         </div>
@@ -196,6 +225,8 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
       </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/3.3.0/vee-validate.full.min.js"></script>
+    <script type="module" src="all.js"></script>
   </body>
 </html>
+
