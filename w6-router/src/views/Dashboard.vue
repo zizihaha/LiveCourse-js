@@ -11,10 +11,9 @@
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   data() {
-    return {
-    };
-  },
+    return {};
+  }
 };
 </script>

@@ -4,13 +4,22 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+  data() {
+    return {};
+  }
+};
+</script>
+
 <style lang="scss">
 body {
   font-family: Microsoft JhengHei, sans-serif;
 }
 
-h2{
-  color: #41B883;
+h2 {
+  color: #41b883;
 }
 
 #app {
@@ -23,14 +32,14 @@ h2{
 
 #nav {
   padding: 30px;
-  font-size:20px;
+  font-size: 20px;
   a {
     font-weight: bold;
     color: #2c3e50;
     padding: 10px;
     text-decoration: none;
-    &:hover{
-      color: #db7093; 
+    &:hover {
+      color: #db7093;
     }
     &.router-link-exact-active {
       color: #db7093;

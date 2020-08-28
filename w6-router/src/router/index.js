@@ -12,18 +12,18 @@ const routes = [
       {
         path: "/about",
         name: "About",
-        component: () => import("../views/About.vue"),
+        component: () => import("../views/About.vue")
       },
       {
         path: "/products",
         name: "Products",
-        component: () => import("../views/Products.vue"),
+        component: () => import("../views/Products.vue")
       },
       {
         path: "/cart",
         name: "Cart",
-        component: () => import("../views/Cart.vue"),
-      },
+        component: () => import("../views/Cart.vue")
+      }
     ]
   },
   {
@@ -32,12 +32,12 @@ const routes = [
     component: () => import("../views/Dashboard.vue"),
     children: [
       {
-        path: 'products',
-        component: () => import("../views/dashboard/Products.vue"),
+        path: "products",
+        component: () => import("../views/dashboard/Products.vue")
       },
       {
-        path: 'coupons',
-        component: () => import("../views/dashboard/Coupons.vue"),
+        path: "coupons",
+        component: () => import("../views/dashboard/Coupons.vue")
       }
     ]
   }

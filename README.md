@@ -7,3 +7,5 @@
 第四週 [Vue 與 API 串接](https://zizihaha.github.io/LiveCourse-js/w4-component/Login.html)
 
 第五週 [Vue 表單驗證](https://zizihaha.github.io/LiveCourse-js/w5-formValidation/index.html)
+
+第六週 [Vue Router](https://zizihaha.github.io/LiveCourse-js/w6-router/dist/index.html#/)

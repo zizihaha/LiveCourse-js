@@ -6,10 +6,9 @@
 
 <script>
 export default {
-  name: 'Coupons',
+  name: "Coupons",
   data() {
-    return {
-    };
-  },
+    return {};
+  }
 };
 </script>

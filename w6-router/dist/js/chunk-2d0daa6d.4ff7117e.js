@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0daa6d"],{"6d09":function(n,e,t){"use strict";t.r(e);var r=function(){var n=this,e=n.$createElement;n._self._c;return n._m(0)},u=[function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[t("h2",[n._v("管理後台的產品頁面")])])}],a={name:"Products",data:function(){return{}}},c=a,l=t("2877"),s=Object(l["a"])(c,r,u,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=chunk-2d0daa6d.4ff7117e.js.map

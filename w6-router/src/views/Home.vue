@@ -6,17 +6,16 @@
       <router-link to="/cart">購物車</router-link>
       <router-link to="/admin/products">後台管理頁面</router-link>
     </div>
-    <hr>
+    <hr />
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
-    return {
-    };
-  },
+    return {};
+  }
 };
 </script>
