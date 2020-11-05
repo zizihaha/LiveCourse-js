@@ -15,15 +15,15 @@
     <div id="app" class="container mt-3">
         <div> 
           <loading loader="dots"
-          :active.sync="isLoading">
+          :active.sync="status.isLoading">
           </loading>
           <validation-observer v-slot="{ invalid }" immediate>
-            <form @submit.prevent="submit">
+            <form @submit.prevent="submitForm">
                 <div class="inner m-auto">
                   <div class="form-group">
                     <label for="title">姓名<i class="asterisk text-danger ml-1">*</i></label>
-                    <validation-provider rules="required" v-slot="{ errors, classes, passed }">
-                      <input id="title" :class="classes" v-model="name" type="text" class="form-control" placeholder="請輸入姓名" name="姓名">
+                    <validation-provider rules="required" v-slot="{ errors, classes }">
+                      <input id="title" :class="classes" v-model="form.name" type="text" class="form-control" placeholder="請輸入姓名" name="姓名">
                       <span class="invalid-feedback">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
@@ -31,16 +31,16 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="eamil">E-mail<i class="asterisk text-danger ml-1">*</i></label>
-                      <validation-provider rules="required" v-slot="{ errors, classes, passed }">
-                        <input id="eamil" :class="classes" v-model="email" type="email" class="form-control"
+                      <validation-provider rules="required" v-slot="{ errors, classes }">
+                        <input id="eamil" :class="classes" v-model="form.email" type="email" class="form-control"
                         placeholder="請輸入E-mail" name="信箱">
                         <span class="invalid-feedback">{{ errors[0] }}</span>
                       </validation-provider>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="tel">電話<i class="asterisk text-danger ml-1">*</i></label>
-                      <validation-provider rules="required|numeric|min:8" v-slot="{ errors, classes, passed }">
-                      <input id="tel" :class="classes" v-model="tel" type="tel" class="form-control"
+                      <validation-provider rules="required|numeric|min:8" v-slot="{ errors, classes }">
+                      <input id="tel" :class="classes" v-model="form.tel" type="tel" class="form-control"
                         placeholder="請輸入電話" name="電話">
                         <span class="invalid-feedback">{{ errors[0] }}</span>
                       </validation-provider>
@@ -49,37 +49,34 @@
 
                   <div class="form-group">
                     <label for="address">地址<i class="asterisk text-danger ml-1">*</i></label>
-                    <validation-provider rules="required" v-slot="{ errors, classes, passed }">
-                      <input id="address" :class="classes" v-model="address" type="text" class="form-control" placeholder="請輸入地址" name="地址">
+                    <validation-provider rules="required" v-slot="{ errors, classes }">
+                      <input id="address" :class="classes" v-model="form.address" type="text" class="form-control" placeholder="請輸入地址" name="地址">
                       <span class="invalid-feedback">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
 
                   <div class="form-group">
                     <label class="my-1 mr-2" for="pay">付款方式<i class="asterisk text-danger ml-1">*</i></label>
-                    <validation-provider rules="required" v-slot="{ errors, classes, passed }">
-                      <select name="付款方式" class="custom-select my-1 mr-sm-2" id="pay" :class="classes" v-model="pay">
-                        <option disabled selected>請選擇付款方式</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <validation-provider rules="required" v-slot="{ errors, classes }">
+                      <select name="付款方式" class="custom-select my-1 mr-sm-2" id="pay" :class="classes" v-model="form.pay">
+                        <option disabled selected  value="">請選擇付款方式</option>
+                        <option value="WebATM">WebATM</option>
+                        <option value="ATM">ATM</option>
+                        <option value="Barcode">Barcode</option>
+                        <option value="Credit">Credit</option>
+                        <option value="ApplePay">ApplePay</option>
+                        <option value="GooglePay">GooglePay</option>
                       </select>
                       <span class="invalid-feedback">{{ errors[0] }}</span>
                     </validation-provider>
                   </div>
-
-                  
                   
                   <div class="form-group">
                     <label for="messenger">留言</label>
-                      <textarea id="messenger"  v-model="messenger" type="text" class="form-control"
+                      <textarea id="messenger"  v-model="form.messenger" type="text" class="form-control"
                         placeholder="請輸入留言內容" name="留言">
                       </textarea>
                   </div> 
-
-                  
-
-                  
 
                   <div class="d-flex justify-content-between">
                     <span class="text-danger"><i class="asterisk mr-2">*</i>為必填欄位</span>
@@ -94,7 +91,6 @@
                   </div>
                 </div>
               </div>
-              
             </form>
           </validation-observer>
         </div>
@@ -110,7 +106,6 @@
       </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/3.3.0/vee-validate.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@3.3.2/dist/vue-loading.min.js"></script>
     <script src="all.js" type="module"></script>
   </body>

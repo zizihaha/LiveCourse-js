@@ -11,7 +11,7 @@ clearAllBtn.addEventListener('click', clearAllTask);
 todoList.addEventListener('click', doSomething);
 body.addEventListener('keydown', enterAdd); 
 
-//陣列資料，localStorage裡面有資料的話就轉成物件取出，沒有就空陣列
+// 陣列資料，localStorage裡面有資料的話就轉成物件取出，沒有就空陣列
 let todoData = JSON.parse(localStorage.getItem('dataList')) || []; 
 renderPage(todoData);
 

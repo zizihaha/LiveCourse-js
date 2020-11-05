@@ -26,19 +26,23 @@ VeeValidate.localize('tw', zh_TW)
 new Vue({
   el: '#app',
   data: {
+    form:{
       name: '',
       email: '',
       tel: '',
       address: '',
       pay: '',
       messenger: '',
+    },
+    status:{
       isLoading: false,
+    }
   },
   methods: {
-    submit(){
-      this.isLoading = true; 
+    submitForm(){
+      this.status.isLoading = true; 
       setTimeout(() => {
-        this.isLoading = false; 
+        this.status.isLoading = false; 
         window.location = 'thankyou.html';
       }, 1000);
     }

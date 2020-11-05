@@ -42,6 +42,9 @@ export default {
         this.status.loadingBtnDel = '';
         $('#delProductModal').modal('hide');
         this.$emit('update'); //事件名稱
+      }).catch((error) => {
+        this.status.loadingBtnDel = '';
+        console.log(error);
       });
     },
   }
